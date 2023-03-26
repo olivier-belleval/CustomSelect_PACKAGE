@@ -15,14 +15,14 @@ A customizable and easy-to-use React select component built with TypeScript and 
 Install the package using npm:
 
 ```bash
-npm install custom-select-component
+npm install custom-multi-or-simple-select
 ```
 
 ## Usage
 Import the CustomSelect component from the package:
 
 ```typescript
-import { CustomSelect } from 'custom-select-component';
+import { CustomSelect } from 'custom-multi-or-simple-select';
 ```
 
 Use the CustomSelect component in your React application:
