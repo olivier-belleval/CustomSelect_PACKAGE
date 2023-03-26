@@ -1,0 +1,24 @@
+root:
+  - src:
+    - components:
+      - Atomes:
+          - AddNewOption:
+              - types:
+                  - AddNewOption.ts
+              - AddNewOption.tsx
+          - OptionRow:
+              - types:
+                  - OptionRow.ts
+              - OptionRow.tsx
+          - SearchBar:
+              - types:
+                  - SearchBar.ts
+              - SearchBar.tsx
+      - Molecules:
+          - CustomSelect:
+              - types:
+                  - CustomSelect.ts
+              - CustomSelect.tsx
+  - package.json
+  - tsconfig.json
+  - pnpm-lock.yaml
