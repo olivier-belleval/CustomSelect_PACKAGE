@@ -8,6 +8,7 @@ import React, { FC } from "react";
 // Import Hooks
 
 // Import locals
+import "./styles.css";
 
 // Import interfaces
 import { OptionRowProps } from "./types/OptionRow";
