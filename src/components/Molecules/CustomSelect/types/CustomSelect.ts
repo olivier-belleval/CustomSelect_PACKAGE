@@ -7,6 +7,7 @@ export interface CustomSelectProps {
   onChange?: (selectedOptions: OptionObject[]) => void;
   isLoading?: boolean;
   className?: string;
+  classNameSearchBar?: string;
   classNameDropdown?: string;
   classNameOption?: string;
   placeholder?: string;

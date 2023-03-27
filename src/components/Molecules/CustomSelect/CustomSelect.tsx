@@ -22,6 +22,7 @@ export const CustomSelect: FC<CustomSelectProps> = ({
   onChange,
   isLoading = false,
   className = "",
+    classNameSearchBar = "",
   classNameDropdown = "",
   classNameOption = "",
   placeholder = "Select one or more options",
@@ -130,6 +131,7 @@ export const CustomSelect: FC<CustomSelectProps> = ({
       <SearchBar
         value={isOpen ? search : selectedOptions.map(o => o.label).join(", ")}
         onChange={handleSearchChange}
+        className={classNameSearchBar}
         placeholder={placeholder}
       />
       {isOpen && (
