@@ -25,6 +25,11 @@ Import the CustomSelect component from the package:
 import { CustomSelect } from 'custom-multi-or-simple-select';
 ```
 
+Import the default styles:
+```typescript
+import "custom-multi-or-simple-select/dist/styles/CustomSelect.css";
+```
+
 Use the CustomSelect component in your React application:
 
 ```typescript
