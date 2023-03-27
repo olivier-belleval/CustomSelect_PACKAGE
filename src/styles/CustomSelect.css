@@ -35,3 +35,26 @@
     width: 100%;
     border-bottom: 2px solid #ccc;
 }
+
+.SearchBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px ;
+    border: 2px solid #ccc;
+    padding-left: 1%;
+}
+
+.OptionRow {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .25rem;
+}
+
+.AddNewOption {
+    padding-left: 1%;
+}
