@@ -73,3 +73,16 @@ const handleSelectChange = (selectedOptions: OptionObject[]) => {
 | AddNewOptionProps| An object containing the props for the `AddNewOption` component, including `label` (string), `text` (string), `onClick` (function), and `className` (string).|
 | OptionRowProps   | An object containing the props for the `OptionRow` component, including `option` (OptionObject), `selected` (boolean), `multiple` (boolean), `onClick` (function), and `className` (string).|
 | SearchBarProps   | An object containing the props for the `SearchBar` component, including `value` (string), `onChange` (function), `className` (string), and `placeholder` (string).|
+
+
+## Default Styles
+| Class Name        | Properties                                                                                                                                              |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CustomSelect      | `position: relative;`                                                                                                                                   |
+| dropdown          | `position: absolute; width: 100%; background: #fff; z-index: 99; border-radius: 5px; border: 2px solid #ccc; padding-left: 1%; max-height: 20vh; overflow-y: auto;` |
+| group             | `margin-top: .25rem; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;`                                           |
+| group-options     | `padding-left: 1rem;`                                                                                                                                   |
+| select-all        | `display: flex; justify-content: flex-start; align-items: center; gap: .25rem; width: 100%; border-bottom: 2px solid #ccc;`                             |
+| SearchBar         | `display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 5px; border: 2px solid #ccc; padding-left: 1%;` |
+| OptionRow         | `display: flex; justify-content: flex-start; align-items: center; gap: .25rem;`                                                                         |
+| AddNewOption      | `padding-left: 1%;`                                                                                                                                     |
