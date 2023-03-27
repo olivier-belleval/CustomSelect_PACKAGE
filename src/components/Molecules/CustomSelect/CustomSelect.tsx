@@ -8,6 +8,7 @@ import React, { FC, useState, useRef, useEffect } from "react";
 // Import Hooks
 
 // Import locals
+import "./styles.css";
 
 // Import interfaces
 import { CustomSelectProps, OptionObject } from "./types/CustomSelect";
