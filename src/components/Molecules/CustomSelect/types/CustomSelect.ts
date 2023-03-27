@@ -4,7 +4,8 @@ export interface CustomSelectProps {
   hasSelectAll?: boolean;
   isCreatable?: boolean;
   closeOnChange?: boolean;
-  onChange?: (selectedOptions: OptionObject[]) => void;
+  onChange: (selectedOptions: OptionObject[]) => void;
+  selectedOptions: OptionObject[];
   isLoading?: boolean;
   className?: string;
   classNameSearchBar?: string;

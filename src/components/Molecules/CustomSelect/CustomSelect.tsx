@@ -20,14 +20,14 @@ export const CustomSelect: FC<CustomSelectProps> = ({
   isCreatable = false,
   closeOnChange,
   onChange,
+  selectedOptions,
   isLoading = false,
   className = "",
-    classNameSearchBar = "",
+  classNameSearchBar = "",
   classNameDropdown = "",
   classNameOption = "",
-  placeholder = "Select one or more options",
-}) => {
-  const [selectedOptions, setSelectedOptions] = useState<OptionObject[]>([]);
+  placeholder = "Search or Select",
+  }) => {
   const [search, setSearch] = useState("");
   const [filteredOptions, setFilteredOptions] = useState(options);
   const [isOpen, setIsOpen] = useState(false);
@@ -42,26 +42,18 @@ export const CustomSelect: FC<CustomSelectProps> = ({
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return;
-    // () => {
-    //   document.removeEventListener("mousedown", handleClickOutside);
-    // };
   }, []);
 
   const handleOptionClick = (option: OptionObject) => {
     if (multiple) {
-      setSelectedOptions(prevSelectedOptions =>
-        prevSelectedOptions.some(o => o.id === option.id)
-          ? prevSelectedOptions.filter(o => o.id !== option.id)
-          : [...prevSelectedOptions, option],
-      );
+      onChange(selectedOptions.some(o => o.id === option.id)
+                   ? selectedOptions.filter(o => o.id !== option.id)
+                   : [...selectedOptions, option])
     } else {
-      setSelectedOptions([option]);
+      onChange([option]);
       if (closeOnChange) {
         setIsOpen(false);
       }
-    }
-    if (onChange) {
-      onChange(selectedOptions);
     }
   };
 
@@ -71,20 +63,15 @@ export const CustomSelect: FC<CustomSelectProps> = ({
 
   const handleCreateOption = () => {
     const newOption: OptionObject = { id: Date.now().toString(), label: search, new: true };
-    setSelectedOptions([...selectedOptions, newOption]);
+    onChange([...selectedOptions, newOption])
     options.push(newOption);
     setSearch("");
-    if (onChange) {
-      onChange(selectedOptions);
-    }
   };
 
   useEffect(() => {
     const filteredOptions = options.filter(option => option.label.toLowerCase().includes(search.toLowerCase()));
     setFilteredOptions(filteredOptions);
   }, [search]);
-
-  // const filteredOptions = options.filter(option => option.label.toLowerCase().includes(search.toLowerCase()));
 
   const groupedOptions = filteredOptions.reduce<{ [key: string]: OptionObject[] }>((groups, option) => {
     const groupName = option.group || "";
@@ -97,65 +84,62 @@ export const CustomSelect: FC<CustomSelectProps> = ({
 
   const renderGroupedOptions = () => {
     return Object.keys(groupedOptions).map(groupName => (
-      <li key={groupName} className={`group ${classNameDropdown}`}>
-        <label className="group-label">{groupName}</label>
-        <ul style={{ paddingLeft: "1rem" }} className="group-options">
-          {groupedOptions[groupName].map(option => (
-            <OptionRow
-              key={option.id}
-              className={classNameOption}
-              option={option}
-              selected={selectedOptions.some(o => o.id === option.id)}
-              multiple={multiple}
-              onClick={() => handleOptionClick(option)}
-            />
-          ))}
-        </ul>
-      </li>
+        <li key={groupName} className={`group ${classNameDropdown}`}>
+          <label className="group-label">{groupName}</label>
+          <ul className="group-options">
+            {groupedOptions[groupName].map(option => (
+                <OptionRow
+                    key={option.id}
+                    className={classNameOption}
+                    option={option}
+                    selected={selectedOptions.some(o => o.id === option.id)}
+                    multiple={multiple}
+                    onClick={() => handleOptionClick(option)}
+                />
+            ))}
+          </ul>
+        </li>
     ));
   };
 
   const handleSelectAll = () => {
     if (selectedOptions.length === filteredOptions.length) {
-      setSelectedOptions([]);
+      onChange([]);
     } else {
-      setSelectedOptions(filteredOptions);
-    }
-    if (onChange) {
-      onChange(selectedOptions);
+      onChange(filteredOptions);
     }
   };
 
   return (
-    <div ref={selectRef} className={`CustomSelect ${className}`} onClick={() => setIsOpen(true)}>
-      <SearchBar
-        value={isOpen ? search : selectedOptions.map(o => o.label).join(", ")}
-        onChange={handleSearchChange}
-        className={classNameSearchBar}
-        placeholder={placeholder}
-      />
-      {isOpen && (
-        <ul className={`dropdown ${classNameDropdown}`}>
-          {hasSelectAll && (
-            <div className="select-all" onClick={handleSelectAll}>
-              {multiple && (
-                <input
-                  type="checkbox"
-                  checked={selectedOptions.length === filteredOptions.length}
-                  onChange={() => {}}
-                />
+      <div ref={selectRef} className={`CustomSelect ${className}`} onClick={() => setIsOpen(true)}>
+        <SearchBar
+            value={isOpen ? search : selectedOptions.map(o => o.label).join(", ")}
+            onChange={handleSearchChange}
+            className={classNameSearchBar}
+            placeholder={placeholder}
+        />
+        {isOpen && (
+            <ul className={`dropdown ${classNameDropdown}`}>
+              {hasSelectAll && (
+                  <div className="select-all" onClick={handleSelectAll}>
+                    {multiple && (
+                        <input
+                            type="checkbox"
+                            checked={selectedOptions.length === filteredOptions.length}
+                            onChange={() => {}}
+                        />
+                    )}
+                    Select All
+                  </div>
               )}
-              Select All
-            </div>
-          )}
 
-          {renderGroupedOptions()}
-          {isCreatable && filteredOptions.length === 0 && search !== "" && (
-            <AddNewOption label={search} onClick={handleCreateOption} className={classNameOption} />
-          )}
-          {isLoading && <div className="loading">Loading...</div>}
-        </ul>
-      )}
-    </div>
+              {renderGroupedOptions()}
+              {isCreatable && filteredOptions.length === 0 && search !== "" && (
+                  <AddNewOption label={search} onClick={handleCreateOption} className={classNameOption} />
+              )}
+              {isLoading && <div className="loading">Loading...</div>}
+            </ul>
+        )}
+      </div>
   );
 };
