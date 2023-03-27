@@ -1,12 +1,12 @@
 {
 	"name": "custom-multi-or-simple-select",
-	"version": "1.0.115",
+	"version": "1.0.116",
 	"description": "Custom select with search, multiple select and create",
 	"author": "Olivier Belleval",
 	"license": "MIT",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc && node copy-css.mjs"
 	},
 	"dependencies": {
 		"react": "^18.2.0",
