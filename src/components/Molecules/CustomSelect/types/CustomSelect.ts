@@ -16,4 +16,5 @@ export interface OptionObject {
   id: string;
   label: string;
   group?: string;
+  new?: boolean;
 }

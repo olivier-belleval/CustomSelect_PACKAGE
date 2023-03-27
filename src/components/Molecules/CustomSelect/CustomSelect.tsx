@@ -69,7 +69,7 @@ export const CustomSelect: FC<CustomSelectProps> = ({
   };
 
   const handleCreateOption = () => {
-    const newOption: OptionObject = { id: Date.now().toString(), label: search };
+    const newOption: OptionObject = { id: Date.now().toString(), label: search, new: true };
     setSelectedOptions([...selectedOptions, newOption]);
     options.push(newOption);
     setSearch("");
