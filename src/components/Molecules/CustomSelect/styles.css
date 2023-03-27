@@ -29,8 +29,9 @@
 
 .select-all {
     display: flex;
-    align-items: center;
     justify-content: flex-start;
+    align-items: center;
+    gap: .25rem;
     width: 100%;
     border-bottom: 2px solid #ccc;
 }
