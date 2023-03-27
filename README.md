@@ -28,13 +28,19 @@ import { CustomSelect } from 'custom-multi-or-simple-select';
 Use the CustomSelect component in your React application:
 
 ```typescript
+const [selectedOption, setSelectedOption] = useState<OptionObject[]>([]);
+
+const handleSelectChange = (selectedOptions: OptionObject[]) => {
+	setSelectedOption(selectedOptions);
+};
+
 <CustomSelect
     multiple={true}
     options={options}
     hasSelectAll={true}
     isCreatable={false}
     closeOnChange={false}
-    onChange={(selectedOptions) => console.log(selectedOptions)}
+    onChange={handleSelectChange}
     isLoading={false}
     className=""
     classNameDropdown=""
